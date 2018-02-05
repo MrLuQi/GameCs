@@ -18,7 +18,7 @@ public  class winningAmount {
 	        try {
 	            connection = JdbcUtils.getConnection();
 	       //     String status="1";
-	            String sql = "SELECT * FROM orders WHERE status='1'";
+	            String sql = "SELECT * FROM orders WHERE status='1' and orderType LIKE '%pcdd'";
 	            preparedStatement = connection.prepareStatement(sql);
 	            resultSet = preparedStatement.executeQuery();
 
@@ -33,7 +33,7 @@ public  class winningAmount {
                int pcdd_pcdd_cal = (int)PCDD_pcdd_cal(orderstatus);
                System.out.println("中奖金额"+pcdd_pcdd_cal);
                //修改语句
-              // connection = JdbcUtils.getConnection();
+               // connection = JdbcUtils.getConnection();
 //               String updatesql = "UPDATE orders  SET status = ?,hitamount=?, WHERE orderno = ?";
 //               preparedStatement = connection.prepareStatement(updatesql);
 //               preparedStatement.setString(1, "0");
