@@ -19,7 +19,7 @@ public class AwardResult{
 	/**
 	 * pcdd中将数据定时插入
 	 */
-	public static void pcdd_kj_json() {
+	public static int[] pcdd_kj_json() {
 		JSONObject httpRequest = json_KJ_Data.httpRequest(
 				"http://f.apiplus.net/bjkl8-1.json", "GET");
 		// 开奖数据
@@ -31,6 +31,7 @@ public class AwardResult{
 	int num1 =(Integer.parseInt(s[0])+Integer.parseInt(s[1])+Integer.parseInt(s[2])+Integer.parseInt(s[3])+Integer.parseInt(s[4])+Integer.parseInt(s[5]))%10;
 	int num2 =(Integer.parseInt(s[6])+Integer.parseInt(s[7])+Integer.parseInt(s[8])+Integer.parseInt(s[9])+Integer.parseInt(s[10])+Integer.parseInt(s[11]))%10;
 	int num3 =(Integer.parseInt(s[12])+Integer.parseInt(s[13])+Integer.parseInt(s[14])+Integer.parseInt(s[15])+Integer.parseInt(s[16])+Integer.parseInt(s[17]))%10;
+	int kaijiang[]={num1,num2,num3};
 	System.out.println(num1);
 	int totalNum=num1+num2+num3;
 	String expect = jsonObject.optString("expect").toString();
@@ -63,6 +64,7 @@ public class AwardResult{
 	        } finally {
 	            JdbcUtils.releaseDB(connection, preparedStatement, null);
 	        }
+			return kaijiang;
 	      
 		
 	
