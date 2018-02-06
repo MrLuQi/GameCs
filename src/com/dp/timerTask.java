@@ -2,7 +2,6 @@ package com.dp;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -134,7 +133,7 @@ public class timerTask {
 					if (minute_dif % pcdd.getFrequency() == 0) {
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------PCDD定时任务启动--------");
-						AwardResult.pcdd_kj_json();
+					Pcdd_Winning_Amount.retrieve();
 						// 1.调用获取开奖数据接口，把开奖数据送入 PCDD 开奖表
 						// 2.获取下注单表中获取所有未开的PCDD数据，并分析每条记录的下单json数据
 						// 3.分析中奖金额(调用PCDD的中奖规则),更新该下注单数据的中奖金额字段。

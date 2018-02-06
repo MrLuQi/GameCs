@@ -3,6 +3,7 @@ package com.dp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import net.sf.json.JSONObject;
 
@@ -10,53 +11,63 @@ import com.kjdp.Util_PCDD;
 import com.pojo.Orders;
 import com.util.JdbcUtils;
 
-public  class winningAmount {
+public  class Pcdd_Winning_Amount {
+	/**
+	 * 更新用户下注信息
+	 */
 	 public static void retrieve() {
 	        Connection connection = null;
 	        PreparedStatement preparedStatement = null;
 	        ResultSet resultSet = null;
+	        
 	        try {
 	            connection = JdbcUtils.getConnection();
 	       //     String status="1";
 	            String sql = "SELECT * FROM orders WHERE status='1' and orderType LIKE '%pcdd'";
-	            preparedStatement = connection.prepareStatement(sql);
+	                preparedStatement = connection.prepareStatement(sql);
 	            resultSet = preparedStatement.executeQuery();
-
+	            
 	            // 遍历结果集
 	            while (resultSet.next()) {
+	            	String updatesql = "UPDATE orders  SET status = ?,hitamount=? WHERE orderNo = ?";
+	            	   preparedStatement = connection.prepareStatement(updatesql);
 	            	Orders orders = new Orders();
                orders.setOrderno(resultSet.getString("orderno"));
                orders.setOrderstatus(resultSet.getString("orderstatus"));
+               //订单号
                String orderno = orders.getOrderno();
+               //状态值
                String orderstatus = orders.getOrderstatus();
                System.out.println(orderno+"++++"+orderstatus);
                int pcdd_pcdd_cal = (int)PCDD_pcdd_cal(orderstatus);
                System.out.println("中奖金额"+pcdd_pcdd_cal);
                //修改语句
-               // connection = JdbcUtils.getConnection();
-//               String updatesql = "UPDATE orders  SET status = ?,hitamount=?, WHERE orderno = ?";
-//               preparedStatement = connection.prepareStatement(updatesql);
-//               preparedStatement.setString(1, "0");
-//               preparedStatement.setInt(2, pcdd_pcdd_cal);
-//               preparedStatement.setString(3, orderno);
-//               int num = preparedStatement.executeUpdate();
-//               System.out.println("一共影响到" + num + "行");
-
-               
-               
-               
+               preparedStatement.setString(1, "0");
+               preparedStatement.setInt(2, pcdd_pcdd_cal);
+               preparedStatement.setString(3, orderno);
+               preparedStatement.executeUpdate();
 	            }
+	         
+	          
 	        } catch (Exception e) {
 	            // TODO: handle exception
 	        } finally {
-	            JdbcUtils.releaseDB(connection, preparedStatement, resultSet);
+	
+	        	JdbcUtils.releaseDB(connection, preparedStatement, resultSet);
 	        }
 
+
+	        
 	    }
 	 
-	 
+	 /**
+	  * 用户下注金额中奖分析
+	  * @param json 用户下注情况
+	  * @return 用户中奖金额
+	  */
 		public static double  PCDD_pcdd_cal(String json){
-			Integer kaijiang=7;
+		String[] pcdd_kj_json = AwardResult.pcdd_kj_json();
+	    int	kaijiang=Integer.parseInt(pcdd_kj_json[1]);
 			double sum=0;
 			 JSONObject topJson = JSONObject.fromObject(json); 
 			 // String category =topJson.get("category").toString();
