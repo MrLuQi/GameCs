@@ -2,11 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/LUQI/Documents/Tencent Files/404535754/FileRecv/commons-beanutils-1.8.3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQI/Documents/Tencent Files/404535754/FileRecv/commons-collections-3.2.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQI/Documents/Tencent Files/404535754/FileRecv/commons-lang-2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQI/Documents/Tencent Files/404535754/FileRecv/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQI/Documents/Tencent Files/404535754/FileRecv/json-lib-2.4-jdk15.jar"/>
-	<classpathentry kind="lib" path="C:/Users/LUQI/Documents/Tencent Files/404535754/FileRecv/mysql-connector-java-3.1.12-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/admin/Desktop/BCgit/GameCsJar/mysql-connector-java-3.1.12-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
