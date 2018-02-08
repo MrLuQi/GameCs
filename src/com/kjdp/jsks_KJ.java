@@ -12,15 +12,13 @@ import com.dp.AwardResult;
 import com.pojo.Cqssc;
 import com.util.JdbcUtils;
 
-public class ssc_KJ {
-public static void ssc_kj_DYIQ(){
+public class jsks_KJ {
+public static void jsks_KJ_LM(){
 	int nums[]=new int[5];
-	String data[]=AwardResult.cqssc_kj_json();
+	String data[]=AwardResult.jsks_kj_json();
 	nums[0]=Integer.parseInt(data[1]);
 	nums[1]=Integer.parseInt(data[2]);
 	nums[2]=Integer.parseInt(data[3]);
-	nums[3]=Integer.parseInt(data[4]);
-	nums[4]=Integer.parseInt(data[5]);
 	Connection connection = null;
     try {
         // 获取连接
@@ -31,9 +29,9 @@ public static void ssc_kj_DYIQ(){
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
 	//Orders orders=new Orders();
-	if(rsQT.getString("orderType").equals("sscONE")){
+	if(rsQT.getString("orderType").equals("jsks")){
 		
-	int zjje=(int)Test_SSC.SSC_DYIQ_cal(rsQT.getString("orderStatus"), nums);
+	int zjje=(int)Test_JSKS.JSKS_DXTB_cal(rsQT.getString("orderStatus"), nums);
 	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "已结");
@@ -56,7 +54,5 @@ public static void ssc_kj_DYIQ(){
     	JdbcUtils.releaseDB(connection, null, null);
     	}
 }
-public static void main(String[] args) {
-	//ssc_kj_DYIQ();
-}
+
 }

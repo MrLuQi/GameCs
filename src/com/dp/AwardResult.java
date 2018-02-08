@@ -196,7 +196,7 @@ public class AwardResult{
 			int totalNum=num1+num2+num3+num4+num5;
 			String expect = jsonObject.optString("expect").toString();
 			String opentime=jsonObject.optString("opentime").toString();
-String arraysString[]={expect,String.valueOf(num1),String.valueOf(num2),String.valueOf(num3),String.valueOf(num4),String.valueOf(num5),String.valueOf(totalNum)};			
+            String arraysString[]={expect,String.valueOf(num1),String.valueOf(num2),String.valueOf(num3),String.valueOf(num4),String.valueOf(num5),String.valueOf(totalNum)};	
 			Connection connection = null;
 	        PreparedStatement preparedStatement = null;
 	        try {
