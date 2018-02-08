@@ -69,6 +69,7 @@ public class AwardResult{
 		
 	
 	}
+	//北京赛车
 	  public static String[] bjsc_kj_json(){
       	//http://f.apiplus.net/bjpk10-1.json
 		  JSONObject httpRequest = json_KJ_Data.httpRequest(
