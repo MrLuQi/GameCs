@@ -16,6 +16,7 @@ public  class Pcdd_Winning_Amount {
 	 * 更新用户下注信息
 	 */
 	 public static void retrieve() {
+		 String args[]=AwardResult.pcdd_kj_json();
 	        Connection connection = null;
 	        PreparedStatement preparedStatement = null;
 	        ResultSet resultSet = null;
@@ -39,8 +40,8 @@ public  class Pcdd_Winning_Amount {
                //状态值
                String orderstatus = orders.getOrderstatus();
                System.out.println(orderno+"++++"+orderstatus);
-               int pcdd_pcdd_cal = (int)PCDD_pcdd_cal(orderstatus);
-               System.out.println("中奖金额"+pcdd_pcdd_cal);
+               int pcdd_pcdd_cal = (int)PCDD_pcdd_cal(orderstatus,args);
+              // System.out.println("中奖金额"+pcdd_pcdd_cal);
                //修改语句
                preparedStatement.setString(1, "0");
                preparedStatement.setInt(2, pcdd_pcdd_cal);
@@ -65,8 +66,8 @@ public  class Pcdd_Winning_Amount {
 	  * @param json 用户下注情况
 	  * @return 用户中奖金额
 	  */
-		public static double  PCDD_pcdd_cal(String json){
-		String[] pcdd_kj_json = AwardResult.pcdd_kj_json();
+		public static double  PCDD_pcdd_cal(String json,String[] args){
+		String[] pcdd_kj_json =args;
 	    int	kaijiang=Integer.parseInt(pcdd_kj_json[1]);
 			double sum=0;
 			 JSONObject topJson = JSONObject.fromObject(json); 
@@ -122,7 +123,7 @@ public  class Pcdd_Winning_Amount {
 			 return sum;
 			}
 public static void main(String[] args) {
-	System.out.println("aa");
+	//System.out.println("aa");
 	retrieve();
 }
 }
