@@ -48,7 +48,7 @@ public class AwardResult{
 	            // 获取PrepareStatement对象
 	            preparedStatement = connection.prepareStatement(sql);
 	            // 填充占位符
-	            preparedStatement.setString(1, "p"+expect);
+	            preparedStatement.setString(1, "P"+expect);
 	            preparedStatement.setString(2, opentime);
 	            preparedStatement.setInt(3, num1);
 	            preparedStatement.setInt(4, num2);
@@ -69,6 +69,7 @@ public class AwardResult{
 		
 	
 	}
+	//北京赛车
 	  public static String[] bjsc_kj_json(){
       	//http://f.apiplus.net/bjpk10-1.json
 		  JSONObject httpRequest = json_KJ_Data.httpRequest(

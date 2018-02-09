@@ -17,16 +17,20 @@ public class timerTask {
 	static {
 		jsks.setBeginTime("8:40");
 		jsks.setEndTime("22:10");
-		jsks.setFrequency(600);
+		//jsks.setFrequency(600);
+		jsks.setFrequency(120);
 		bjsc.setBeginTime("09:02");
 		bjsc.setEndTime("23:57");
-		bjsc.setFrequency(300);
+		//bjsc.setFrequency(300);
+		bjsc.setFrequency(120);
 		pcdd.setBeginTime("9:00");
 		pcdd.setEndTime("23:55");
-		pcdd.setFrequency(300);
+		//pcdd.setFrequency(300);
+		pcdd.setFrequency(120);
 		ssc_day.setBeginTime("10:00");
 		ssc_day.setEndTime("22:00");
-		ssc_day.setFrequency(600);
+		//ssc_day.setFrequency(600);
+		ssc_day.setFrequency(120);
 		ssc_night.setBeginTime("22:00");
 		ssc_night.setEndTime("2:00");
 		ssc_night.setFrequency(300);
@@ -59,7 +63,7 @@ public class timerTask {
 					if (minute_dif % jsks.getFrequency() == 0) {
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------江苏快三定时任务启动--------");
-						jsks_KJ.jsks_KJ_LM();
+						//jsks_KJ.jsks_KJ_LM();
 						// 1.调用获取开奖数据接口，把开奖数据送入 江苏快三 开奖表
 						// 2.获取下注单表中获取所有未开的江苏快三数据，并分析每条记录的下单json数据
 						// 3.分析中奖金额(调用江苏快3的中奖规则),更新该下注单数据的中奖金额字段。
@@ -98,7 +102,7 @@ public class timerTask {
 					if (minute_dif % (bjsc.getFrequency()) == 0) {
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------北京赛车定时任务启动--------");
-						AwardResult.bjsc_kj_json();
+						//AwardResult.bjsc_kj_json();
 						// 1.调用获取开奖数据接口，把开奖数据送入 江苏快三 开奖表
 						// 2.获取下注单表中获取所有未开的江苏快三数据，并分析每条记录的下单json数据
 						// 3.分析中奖金额(调用江苏快3的中奖规则),更新该下注单数据的中奖金额字段。
@@ -137,7 +141,7 @@ public class timerTask {
 					if (minute_dif % pcdd.getFrequency() == 0) {
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------PCDD定时任务启动--------");
-						Pcdd_Winning_Amount.retrieve();
+						//Pcdd_Winning_Amount.retrieve();
 						// 1.调用获取开奖数据接口，把开奖数据送入 PCDD 开奖表
 						// 2.获取下注单表中获取所有未开的PCDD数据，并分析每条记录的下单json数据
 						// 3.分析中奖金额(调用PCDD的中奖规则),更新该下注单数据的中奖金额字段。
