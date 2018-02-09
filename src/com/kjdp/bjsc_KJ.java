@@ -34,7 +34,7 @@ public class bjsc_KJ {
 	        // 获取连接
 	        connection = JdbcUtils.getConnection();
 	      
-		String	sqlQT=	"select * FROM orders where periodno='1' ";
+		String	sqlQT=	"select * FROM orders where status='0' ";
 		Statement st=connection.createStatement();
 		ResultSet rsQT=st.executeQuery(sqlQT);
 		while(rsQT.next()){
@@ -42,7 +42,7 @@ public class bjsc_KJ {
 		if(rsQT.getString("orderType").equals("bjscLM")){
 			
 		int zjje=(int)Test_BJSC.BJSC_LM_cal(rsQT.getString("orderStatus"), nums);
-		String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+		String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 		PreparedStatement pst=connection.prepareStatement(sqlJG);
 		 pst.setString(1, "1");
 		 if(zjje > 0){
@@ -51,7 +51,11 @@ public class bjsc_KJ {
 			 pst.setString(2, "0");
 		 }
 		 pst.setInt(3, zjje);
-		 pst.setString(4, data[0]);
+		 if(zjje > 10000){
+			 pst.setString(4, "1");
+			 }else{
+				 pst.setString(2, "0");
+			 }
 		 pst.setInt(5, rsQT.getInt("oid"));
 		 pst.executeUpdate();
 		}
@@ -85,7 +89,7 @@ public static void bjsc_kj_GY(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -93,7 +97,7 @@ public static void bjsc_kj_GY(String[] args){
 	if(rsQT.getString("orderType").equals("bjscGYJZH")){
 		
 	int zjje=(int)Test_BJSC.BJSC_GY_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -102,7 +106,11 @@ public static void bjsc_kj_GY(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}
@@ -136,7 +144,7 @@ public static void bjsc_kj_DH(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -144,7 +152,7 @@ public static void bjsc_kj_DH(String[] args){
 	if(rsQT.getString("orderType").equals("bjscDH")){
 		
 	int zjje=(int)Test_BJSC.BJSC_DH_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -153,7 +161,11 @@ public static void bjsc_kj_DH(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}

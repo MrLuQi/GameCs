@@ -28,7 +28,7 @@ public  class Pcdd_Winning_Amount {
 	            
 	            // 遍历结果集
 	            while (resultSet.next()) {
-	            	String updatesql = "UPDATE orders  SET status = ?,hitamount=? WHERE orderNo = ?";
+	            	String updatesql = "update orders set status=?,hitflag=? ,bigflag=?,hitamount=? where oid=?";
 	            	   preparedStatement = connection.prepareStatement(updatesql);
 	            	Orders orders = new Orders();
                orders.setOrderno(resultSet.getString("orderno"));
@@ -42,9 +42,18 @@ public  class Pcdd_Winning_Amount {
                System.out.println("中奖金额"+pcdd_pcdd_cal);
                //修改语句
                preparedStatement.setString(1, "1");
-               preparedStatement.setInt(2, pcdd_pcdd_cal);
-               preparedStatement.setString(3, args[0]);
-               preparedStatement.setString(3, orderno);
+               if(pcdd_pcdd_cal > 0){
+            	   preparedStatement.setString(2, "1");  
+               }else{
+            	   preparedStatement.setString(2, "0");   
+               }
+               if(pcdd_pcdd_cal > 10000){
+            	   preparedStatement.setString(3, "1");  
+               }else{
+            	   preparedStatement.setString(3, "0");   
+               }
+               preparedStatement.setInt(4, pcdd_pcdd_cal);
+               preparedStatement.setInt(5, resultSet.getInt("oid"));
                preparedStatement.executeUpdate();
 	            }
 	         

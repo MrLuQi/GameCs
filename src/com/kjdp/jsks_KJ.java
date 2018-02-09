@@ -24,7 +24,7 @@ public static void jsks_kj_LM(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -32,16 +32,21 @@ public static void jsks_kj_LM(String[] args){
 	if(rsQT.getString("orderType").equals("jsks")){
 		
 	int zjje=(int)Test_JSKS.JSKS_DXTB_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
-	 pst.setString(1, "已结");
+	 pst.setString(1, "1");
 	 if(zjje > 0){
-	 pst.setString(2, "中奖");
+	 pst.setString(2, "1");
 	 }else{
-		 pst.setString(2, "未中");
+		 pst.setString(2, "0");
 	 }
+	
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}

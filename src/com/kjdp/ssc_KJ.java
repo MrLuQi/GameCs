@@ -30,7 +30,7 @@ public class ssc_KJ {
 	        // 获取连接
 	        connection = JdbcUtils.getConnection();
 	      
-		String	sqlQT=	"select * FROM orders where periodno='1' ";
+		String	sqlQT=	"select * FROM orders where status='0' ";
 		Statement st=connection.createStatement();
 		ResultSet rsQT=st.executeQuery(sqlQT);
 		while(rsQT.next()){
@@ -38,7 +38,7 @@ public class ssc_KJ {
 		if(rsQT.getString("orderType").equals("sscLM")){
 			
 		int zjje=(int)Test_SSC.SSC_LM_cal(rsQT.getString("orderStatus"), nums);
-		String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+		String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 		PreparedStatement pst=connection.prepareStatement(sqlJG);
 		 pst.setString(1, "1");
 		 if(zjje > 0){
@@ -47,7 +47,11 @@ public class ssc_KJ {
 			 pst.setString(2, "0");
 		 }
 		 pst.setInt(3, zjje);
-		 pst.setString(4, data[0]);
+		 if(zjje > 10000){
+			 pst.setString(2, "1");
+			 }else{
+				 pst.setString(2, "0");
+			 }
 		 pst.setInt(5, rsQT.getInt("oid"));
 		 pst.executeUpdate();
 		}
@@ -76,7 +80,7 @@ public static void ssc_kj_DYIQ(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -84,7 +88,7 @@ public static void ssc_kj_DYIQ(String[] args){
 	if(rsQT.getString("orderType").equals("sscONE")){
 		
 	int zjje=(int)Test_SSC.SSC_DYIQ_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -93,7 +97,11 @@ public static void ssc_kj_DYIQ(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 0){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}
@@ -122,7 +130,7 @@ public static void ssc_kj_DERQ(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -130,7 +138,7 @@ public static void ssc_kj_DERQ(String[] args){
 	if(rsQT.getString("orderType").equals("sscTWO")){
 		
 	int zjje=(int)Test_SSC.SSC_DERQ_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -139,7 +147,11 @@ public static void ssc_kj_DERQ(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}
@@ -168,7 +180,7 @@ public static void ssc_kj_DSANQ(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -176,7 +188,7 @@ public static void ssc_kj_DSANQ(String[] args){
 	if(rsQT.getString("orderType").equals("sscTHREE")){
 		
 	int zjje=(int)Test_SSC.SSC_DSANQ_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -185,7 +197,11 @@ public static void ssc_kj_DSANQ(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}
@@ -214,7 +230,7 @@ public static void ssc_kj_DSIQ(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -222,7 +238,7 @@ public static void ssc_kj_DSIQ(String[] args){
 	if(rsQT.getString("orderType").equals("sscFOUR")){
 		
 	int zjje=(int)Test_SSC.SSC_DSIQ_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -231,7 +247,11 @@ public static void ssc_kj_DSIQ(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}
@@ -260,7 +280,7 @@ public static void ssc_kj_DWUQ(String[] args){
         // 获取连接
         connection = JdbcUtils.getConnection();
       
-	String	sqlQT=	"select * FROM orders where periodno='1' ";
+	String	sqlQT=	"select * FROM orders where status='0' ";
 	Statement st=connection.createStatement();
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
@@ -268,7 +288,7 @@ public static void ssc_kj_DWUQ(String[] args){
 	if(rsQT.getString("orderType").equals("sscFIVS")){
 		
 	int zjje=(int)Test_SSC.SSC_DWUQ_cal(rsQT.getString("orderStatus"), nums);
-	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,periodno=? where oid=?";
+	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
 	PreparedStatement pst=connection.prepareStatement(sqlJG);
 	 pst.setString(1, "1");
 	 if(zjje > 0){
@@ -277,7 +297,11 @@ public static void ssc_kj_DWUQ(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 pst.setString(4, data[0]);
+	 if(zjje > 10000){
+		 pst.setString(4, "1");
+		 }else{
+			 pst.setString(4, "0");
+		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
 	}

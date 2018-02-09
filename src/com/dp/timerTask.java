@@ -15,6 +15,7 @@ public class timerTask {
 	static JiangSet ssc_night = new JiangSet(); // 重庆时时彩--夜场
 	static JiangSet bjsc = new JiangSet(); // 北京赛车
 	static JiangSet lhc = new JiangSet(); // 六合彩
+	static  int  second_effct=0;// 开奖延迟设置值(秒),此设置暂时未用。
 	static  int  minuts_effct=0;//误差值
 	static {
 		jsks.setBeginTime("8:40");
@@ -60,6 +61,12 @@ public class timerTask {
 					int minute_dif = (hour * 3600 + minute * 60 +second)
 							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 					if (minute_dif % jsks.getFrequency() == 0) {
+						try {
+							Thread.sleep(second_effct);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------江苏快三定时任务启动--------");
 						String args[]=AwardResult.jsks_kj_json();
@@ -100,6 +107,12 @@ public class timerTask {
 					int minute_dif = (hour * 3600 + minute * 60 + second)
 							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 					if (minute_dif % (bjsc.getFrequency()) == 0) {
+						try {
+							Thread.sleep(second_effct);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------北京赛车定时任务启动--------");
 						String args[]=AwardResult.bjsc_kj_json();
@@ -142,6 +155,12 @@ public class timerTask {
 					int minute_dif = (hour * 3600 + minute * 60 +second)
 							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 					if (minute_dif % pcdd.getFrequency() == 0) {
+						try {
+							Thread.sleep(second_effct);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------PCDD定时任务启动--------");
 						String args[]=AwardResult.pcdd_kj_json();
@@ -177,6 +196,12 @@ public class timerTask {
 						int minute_dif = (hour * 3600 + minute * 60 + second)
 								- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 						if (minute_dif % ssc_day.getFrequency() == 0) {
+							try {
+								Thread.sleep(second_effct);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							System.out.println("当前时间" + (new Date().toString()));
 							System.out.println("-------重庆时时彩白场定时任务启动--------");
 							String args[]=AwardResult.cqssc_kj_json();
@@ -219,6 +244,12 @@ public class timerTask {
 						int minute_dif = (hour * 3600 + minute * 60 + second)
 								- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 						if (minute_dif % ssc_day.getFrequency() == 0) {
+							try {
+								Thread.sleep(second_effct);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 							System.out.println("当前时间" + (new Date().toString()));
 							System.out.println("-------重庆时时彩夜场定时任务启动--------");
 							String args[]=AwardResult.cqssc_kj_json();
