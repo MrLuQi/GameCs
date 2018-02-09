@@ -1,53 +1,9 @@
 package com.kjdp;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import com.pojo.JsonBoCai;
 
 import net.sf.json.JSONObject;
 
 public class Test_SSC {
-	/**
-	 * 模拟从前台页面收集到的数据后，封装到投注的类JsonBoCai中(模拟时时彩--第一球玩法投注)
-	 * @return
-	 */
-	public static JsonBoCai SSC_DHONE(){
-		return null;
-		
-	}
-	/**
-	 * 模拟从前台页面收集到的数据后，封装到投注的类JsonBoCai中(模拟时时彩--第二球玩法投注)
-	 * @return
-	 */
-	public static JsonBoCai SSC_DHTWO(){
-		return null;
-		
-	}
-	/**
-	 * 模拟从前台页面收集到的数据后，封装到投注的类JsonBoCai中(模拟时时彩--第三球玩法投注)
-	 * @return
-	 */
-	public static JsonBoCai SSC_DHTHREE(){
-		return null;
-		
-	}
-	/**
-	 * 模拟从前台页面收集到的数据后，封装到投注的类JsonBoCai中(模拟时时彩--第四球玩法投注)
-	 * @return
-	 */
-	public static JsonBoCai SSC_DHFOUR(){
-		return null;
-		
-	}
-	/**
-	 * 模拟从前台页面收集到的数据后，封装到投注的类JsonBoCai中(模拟时时彩--第五球玩法投注)
-	 * @return
-	 */
-	public static JsonBoCai SSC_DHFIVE(){
-		return null;
-		
-	}
 			
 /**
  * 时时彩--两面玩法

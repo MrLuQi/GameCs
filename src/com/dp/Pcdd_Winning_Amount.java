@@ -12,8 +12,8 @@ public  class Pcdd_Winning_Amount {
 	/**
 	 * 更新用户下注信息
 	 */
-	 public static void retrieve(String[] args) {
-	//	 String args[]=AwardResult.pcdd_kj_json();
+	 public static void retrieve(String[] arg) {
+		 String args[]=arg;
 		 //String periodNo="P"+args[0];
 	        Connection connection = null;
 	        PreparedStatement preparedStatement = null;
@@ -43,7 +43,7 @@ public  class Pcdd_Winning_Amount {
                //修改语句
                preparedStatement.setString(1, "1");
                preparedStatement.setInt(2, pcdd_pcdd_cal);
-             //  preparedStatement.setString(3, periodNo);
+               preparedStatement.setString(3, args[0]);
                preparedStatement.setString(3, orderno);
                preparedStatement.executeUpdate();
 	            }

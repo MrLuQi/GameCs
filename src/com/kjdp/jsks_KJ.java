@@ -13,9 +13,9 @@ import com.pojo.Cqssc;
 import com.util.JdbcUtils;
 
 public class jsks_KJ {
-public static void jsks_KJ_LM(){
+public static void jsks_kj_LM(String[] args){
 	int nums[]=new int[5];
-	String data[]=AwardResult.jsks_kj_json();
+	String data[]=args;
 	nums[0]=Integer.parseInt(data[1]);
 	nums[1]=Integer.parseInt(data[2]);
 	nums[2]=Integer.parseInt(data[3]);
