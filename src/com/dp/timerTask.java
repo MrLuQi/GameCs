@@ -37,7 +37,7 @@ public class timerTask {
 		bjsc.setFrequency(5);
 		pcdd.setBeginTime("9:00");
 		pcdd.setEndTime("23:55");
-		pcdd.setFrequency(5);
+		pcdd.setFrequency(300);
 		ssc_day.setBeginTime("10:00");
 		ssc_day.setEndTime("22:00");
 		ssc_day.setFrequency(10);
@@ -121,7 +121,9 @@ public class timerTask {
 		//}, 1000, bjsc.getFrequency() * 1000);
 		}, 1000, 60 * 1000);
 	}
-
+/**
+ * pcdd定时器
+ */
 	public static void startPCDD() {
 		Timer timer_jsks = new Timer();
 		timer_jsks.scheduleAtFixedRate(new TimerTask() {
@@ -143,12 +145,13 @@ public class timerTask {
 				if ((hour > set_beginHour && hour < set_endHour)
 						|| (hour == set_beginHour && minute >= set_beginMinute)
 						|| (hour == set_endHour && minute <= set_endMinute)) {
-					int minute_dif = (hour * 60 + minute)
-							- (set_beginHour * 60 + set_beginMinute); // 分钟差
+					int minute_dif = (hour * 3600 + minute*60)
+							- (set_beginHour * 3600 + set_beginMinute*60); // 分钟差
 					if (minute_dif % pcdd.getFrequency() == 0) {
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------PCDD定时任务启动--------");
-						Pcdd_Winning_Amount.retrieve();
+						 String args[]=AwardResult.pcdd_kj_json();
+						Pcdd_Winning_Amount.retrieve(args);
 						// 1.调用获取开奖数据接口，把开奖数据送入 PCDD 开奖表
 						// 2.获取下注单表中获取所有未开的PCDD数据，并分析每条记录的下单json数据
 						// 3.分析中奖金额(调用PCDD的中奖规则),更新该下注单数据的中奖金额字段。
@@ -157,7 +160,7 @@ public class timerTask {
 			}
 
 		//}, 1000, pcdd.getFrequency() * 1000*60);
-		}, 1000, 60 * 1000);
+		}, 1000,1000);
 		}
 		public static void startSSC_day() {
 			Timer timer_jsks = new Timer();
@@ -190,7 +193,7 @@ public class timerTask {
 				}
 
 			//}, 1000, ssc.getFrequency() * 1000*60);
-			}, 1000, 60 * 1000);
+			}, 1000, 1000);
 		}
 
 		public static void startSSC_night() {
@@ -228,8 +231,8 @@ public class timerTask {
 	}
 	
 	public static void main(String[] args) {
-		startJSKS();
-		//startPCDD();
+		//startJSKS();
+		startPCDD();
 		//startBJSC();
 		//startSSC_day();
 		//startSSC_night();

@@ -3,10 +3,7 @@ package com.dp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-
 import net.sf.json.JSONObject;
-
 import com.kjdp.Util_PCDD;
 import com.pojo.Orders;
 import com.util.JdbcUtils;
@@ -15,8 +12,9 @@ public  class Pcdd_Winning_Amount {
 	/**
 	 * 更新用户下注信息
 	 */
-	 public static void retrieve() {
-		 String args[]=AwardResult.pcdd_kj_json();
+	 public static void retrieve(String[] args) {
+	//	 String args[]=AwardResult.pcdd_kj_json();
+		 //String periodNo="P"+args[0];
 	        Connection connection = null;
 	        PreparedStatement preparedStatement = null;
 	        ResultSet resultSet = null;
@@ -24,7 +22,7 @@ public  class Pcdd_Winning_Amount {
 	        try {
 	            connection = JdbcUtils.getConnection();
 	       //     String status="1";
-	            String sql = "SELECT * FROM orders WHERE status='1' and orderType LIKE '%pcdd'";
+	            String sql = "SELECT * FROM orders WHERE status='0' and orderType LIKE '%pcdd'";
 	                preparedStatement = connection.prepareStatement(sql);
 	            resultSet = preparedStatement.executeQuery();
 	            
@@ -41,10 +39,11 @@ public  class Pcdd_Winning_Amount {
                String orderstatus = orders.getOrderstatus();
                System.out.println(orderno+"++++"+orderstatus);
                int pcdd_pcdd_cal = (int)PCDD_pcdd_cal(orderstatus,args);
-              // System.out.println("中奖金额"+pcdd_pcdd_cal);
+               System.out.println("中奖金额"+pcdd_pcdd_cal);
                //修改语句
-               preparedStatement.setString(1, "0");
+               preparedStatement.setString(1, "1");
                preparedStatement.setInt(2, pcdd_pcdd_cal);
+             //  preparedStatement.setString(3, periodNo);
                preparedStatement.setString(3, orderno);
                preparedStatement.executeUpdate();
 	            }
@@ -124,6 +123,7 @@ public  class Pcdd_Winning_Amount {
 			}
 public static void main(String[] args) {
 	//System.out.println("aa");
-	retrieve();
+	//retrieve();
+
 }
 }
