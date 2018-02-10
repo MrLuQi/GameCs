@@ -1,4 +1,5 @@
 package com.dp;
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
@@ -15,25 +16,25 @@ public class timerTask {
 	static JiangSet ssc_night = new JiangSet(); // 重庆时时彩--夜场
 	static JiangSet bjsc = new JiangSet(); // 北京赛车
 	static JiangSet lhc = new JiangSet(); // 六合彩
-	static  int  second_effct=0;// 开奖延迟设置值(秒),此设置暂时未用。
-	static  int  minuts_effct=0;//误差值
+	static int second_effct = 0;// 开奖延迟设置值(秒),此设置暂时未用。
+	static int minuts_effct = 0;// 误差值
 	static {
 		jsks.setBeginTime("8:40");
 		jsks.setEndTime("22:10");
-		jsks.setFrequency(600);
+		jsks.setFrequency(10 * 60);
 		bjsc.setBeginTime("09:02");
 		bjsc.setEndTime("23:57");
-		bjsc.setFrequency(300);
-		//bjsc.setFrequency(180);
+		bjsc.setFrequency(5 * 60);
+		// bjsc.setFrequency(180);
 		pcdd.setBeginTime("9:00");
 		pcdd.setEndTime("23:55");
-		pcdd.setFrequency(300);
+		pcdd.setFrequency(5 * 60);
 		ssc_day.setBeginTime("10:00");
 		ssc_day.setEndTime("22:00");
-		ssc_day.setFrequency(600);
+		ssc_day.setFrequency(10 * 60);
 		ssc_night.setBeginTime("22:00");
 		ssc_night.setEndTime("2:00");
-		ssc_night.setFrequency(300);
+		ssc_night.setFrequency(5 * 60);
 	}
 
 	public static void startJSKS() {
@@ -58,7 +59,7 @@ public class timerTask {
 				if ((hour > set_beginHour && hour < set_endHour)
 						|| (hour == set_beginHour && minute >= set_beginMinute)
 						|| (hour == set_endHour && minute <= set_endMinute)) {
-					int minute_dif = (hour * 3600 + minute * 60 +second)
+					int minute_dif = (hour * 3600 + minute * 60 + second)
 							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 					if (minute_dif % jsks.getFrequency() == 0) {
 						try {
@@ -69,7 +70,7 @@ public class timerTask {
 						}
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------江苏快三定时任务启动--------");
-						String args[]=AwardResult.jsks_kj_json();
+						String args[] = AwardResult.jsks_kj_json();
 						jsks_KJ.jsks_kj_LM(args);
 						// 1.调用获取开奖数据接口，把开奖数据送入 江苏快三 开奖表
 						// 2.获取下注单表中获取所有未开的江苏快三数据，并分析每条记录的下单json数据
@@ -78,8 +79,8 @@ public class timerTask {
 				}
 			}
 
-		//}, 1000, jsks.getFrequency() * 1000*60);
-		}, 1000,1000);
+			// }, 1000, jsks.getFrequency() * 1000*60);
+		}, 1000, 1000);
 	}
 
 	public static void startBJSC() {
@@ -115,10 +116,10 @@ public class timerTask {
 						}
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------北京赛车定时任务启动--------");
-						String args[]=AwardResult.bjsc_kj_json();
+						String args[] = AwardResult.bjsc_kj_json();
 						bjsc_KJ.bjsc_kj_GY(args);
 						bjsc_KJ.bjsc_kj_LM(args);
-						bjsc_KJ.bjsc_kj_DH(args);				
+						bjsc_KJ.bjsc_kj_DH(args);
 						// 1.调用获取开奖数据接口，把开奖数据送入 江苏快三 开奖表
 						// 2.获取下注单表中获取所有未开的江苏快三数据，并分析每条记录的下单json数据
 						// 3.分析中奖金额(调用江苏快3的中奖规则),更新该下注单数据的中奖金额字段。
@@ -126,8 +127,8 @@ public class timerTask {
 				}
 			}
 
-		//}, 1000, bjsc.getFrequency() * 1000);
-		}, 1000,1000);
+			// }, 1000, bjsc.getFrequency() * 1000);
+		}, 1000, 1000);
 	}
 
 	public static void startPCDD() {
@@ -138,7 +139,7 @@ public class timerTask {
 				Calendar c = Calendar.getInstance();
 				int hour = c.get(Calendar.HOUR_OF_DAY);
 				int minute = c.get(Calendar.MINUTE);
-				int second = c.get(Calendar.SECOND); 
+				int second = c.get(Calendar.SECOND);
 				// --取系统设定的时间--//
 				int set_beginHour = Integer.parseInt(pcdd.getBeginTime().split(
 						":")[0]);
@@ -152,7 +153,7 @@ public class timerTask {
 				if ((hour > set_beginHour && hour < set_endHour)
 						|| (hour == set_beginHour && minute >= set_beginMinute)
 						|| (hour == set_endHour && minute <= set_endMinute)) {
-					int minute_dif = (hour * 3600 + minute * 60 +second)
+					int minute_dif = (hour * 3600 + minute * 60 + second)
 							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
 					if (minute_dif % pcdd.getFrequency() == 0) {
 						try {
@@ -163,7 +164,7 @@ public class timerTask {
 						}
 						System.out.println("当前时间" + (new Date().toString()));
 						System.out.println("-------PCDD定时任务启动--------");
-						String args[]=AwardResult.pcdd_kj_json();
+						String args[] = AwardResult.pcdd_kj_json();
 						Pcdd_Winning_Amount.retrieve(args);
 						// 1.调用获取开奖数据接口，把开奖数据送入 PCDD 开奖表
 						// 2.获取下注单表中获取所有未开的PCDD数据，并分析每条记录的下单json数据
@@ -172,104 +173,113 @@ public class timerTask {
 				}
 			}
 
-		//}, 1000, pcdd.getFrequency() * 1000*60);
-		}, 1000,1000);
-		}
-		public static void startSSC_day() {
-			Timer timer_ssc = new Timer();
-			timer_ssc.scheduleAtFixedRate(new TimerTask() {
-				public void run() {
-					// --取当前最新时间(时、分)--//
-					Calendar c = Calendar.getInstance();
-					int hour = c.get(Calendar.HOUR_OF_DAY);
-					int minute = c.get(Calendar.MINUTE);
-					int second = c.get(Calendar.SECOND);
-					// --取系统设定的时间--//
-					int set_beginHour = Integer.parseInt(ssc_day.getBeginTime().split(":")[0]);
-					int set_beginMinute = Integer.parseInt(ssc_day.getBeginTime().split(":")[1]);
-					int set_endHour = Integer.parseInt(ssc_day.getEndTime().split(":")[0]);
-					int set_endMinute = Integer.parseInt(ssc_day.getEndTime().split(":")[1]);
-					/* 判断当前时间是否有效 */
-					if ((hour > set_beginHour && hour < set_endHour)
-							|| (hour == set_beginHour && minute >= set_beginMinute)
-							|| (hour == set_endHour && minute <= set_endMinute)) {
-						int minute_dif = (hour * 3600 + minute * 60 + second)
-								- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
-						if (minute_dif % ssc_day.getFrequency() == 0) {
-							try {
-								Thread.sleep(second_effct);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							System.out.println("当前时间" + (new Date().toString()));
-							System.out.println("-------重庆时时彩白场定时任务启动--------");
-							String args[]=AwardResult.cqssc_kj_json();
-							ssc_KJ.ssc_kj_LM(args);//重庆时时彩两面玩法判断
-							ssc_KJ.ssc_kj_DYIQ(args);//重庆时时彩第一球玩法判断
-							ssc_KJ.ssc_kj_DERQ(args);//重庆时时彩第二球玩法判断
-							ssc_KJ.ssc_kj_DSANQ(args);//重庆时时彩第三球玩法判断
-							ssc_KJ.ssc_kj_DSIQ(args);//重庆时时彩第四球玩法判断
-							ssc_KJ.ssc_kj_DWUQ(args);//重庆时时彩第五球玩法判断
-							
-							// 1.调用获取开奖数据接口，把开奖数据送入 时时彩 开奖表
-							// 2.获取下注单表中获取所有未开的时时彩数据，并分析每条记录的下单json数据
-							// 3.分析中奖金额(调用时时彩的中奖规则),更新该下注单数据的中奖金额字段。
-						}
-					}
-				}
-
-			//}, 1000, ssc.getFrequency() * 1000*60);
-			}, 1000,1000);
-		}
-
-		public static void startSSC_night() {
-			Timer timer_ssc = new Timer();
-			timer_ssc.scheduleAtFixedRate(new TimerTask() {
-				public void run() {
-					// --取当前最新时间(时、分)--//
-					Calendar c = Calendar.getInstance();
-					int hour = c.get(Calendar.HOUR_OF_DAY);
-					int minute = c.get(Calendar.MINUTE);
-					int second = c.get(Calendar.SECOND); 
-					// --取系统设定的时间--//
-					int set_beginHour = Integer.parseInt(ssc_night.getBeginTime().split(":")[0]);
-					int set_beginMinute = Integer.parseInt(ssc_night.getBeginTime().split(":")[1]);
-					int set_endHour = Integer.parseInt(ssc_night.getEndTime().split(":")[0]);
-					int set_endMinute = Integer.parseInt(ssc_night.getEndTime().split(":")[1]);
-					/* 判断当前时间是否有效 */
-					if (!(hour > set_endHour  && hour < set_beginHour)  //重庆时时彩夜场特殊处理，取反操作。
-							|| (hour == set_beginHour && minute >= set_beginMinute)
-							|| (hour == set_endHour && minute <= set_endMinute)) {
-						int minute_dif = (hour * 3600 + minute * 60 + second)
-								- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
-						if (minute_dif % ssc_day.getFrequency() == 0) {
-							try {
-								Thread.sleep(second_effct);
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-							System.out.println("当前时间" + (new Date().toString()));
-							System.out.println("-------重庆时时彩夜场定时任务启动--------");
-							String args[]=AwardResult.cqssc_kj_json();
-							ssc_KJ.ssc_kj_LM(args);//重庆时时彩两面玩法判断
-							ssc_KJ.ssc_kj_DYIQ(args);//重庆时时彩第一球玩法判断
-							ssc_KJ.ssc_kj_DERQ(args);//重庆时时彩第二球玩法判断
-							ssc_KJ.ssc_kj_DSANQ(args);//重庆时时彩第三球玩法判断
-							ssc_KJ.ssc_kj_DSIQ(args);//重庆时时彩第四球玩法判断
-							ssc_KJ.ssc_kj_DWUQ(args);//重庆时时彩第五球玩法判断
-							// 1.调用获取开奖数据接口，把开奖数据送入 时时彩 开奖表
-							// 2.获取下注单表中获取所有未开的时时彩数据，并分析每条记录的下单json数据
-							// 3.分析中奖金额(调用时时彩的中奖规则),更新该下注单数据的中奖金额字段。
-						}
-					}
-				}
-
-			//}, 1000, ssc.getFrequency() * 1000*60);
-			}, 1000,1000);
+			// }, 1000, pcdd.getFrequency() * 1000*60);
+		}, 1000, 1000);
 	}
-	
+
+	public static void startSSC_day() {
+		Timer timer_ssc = new Timer();
+		timer_ssc.scheduleAtFixedRate(new TimerTask() {
+			public void run() {
+				// --取当前最新时间(时、分)--//
+				Calendar c = Calendar.getInstance();
+				int hour = c.get(Calendar.HOUR_OF_DAY);
+				int minute = c.get(Calendar.MINUTE);
+				int second = c.get(Calendar.SECOND);
+				// --取系统设定的时间--//
+				int set_beginHour = Integer.parseInt(ssc_day.getBeginTime()
+						.split(":")[0]);
+				int set_beginMinute = Integer.parseInt(ssc_day.getBeginTime()
+						.split(":")[1]);
+				int set_endHour = Integer.parseInt(ssc_day.getEndTime().split(
+						":")[0]);
+				int set_endMinute = Integer.parseInt(ssc_day.getEndTime()
+						.split(":")[1]);
+				/* 判断当前时间是否有效 */
+				if ((hour > set_beginHour && hour < set_endHour)
+						|| (hour == set_beginHour && minute >= set_beginMinute)
+						|| (hour == set_endHour && minute <= set_endMinute)) {
+					int minute_dif = (hour * 3600 + minute * 60 + second)
+							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
+					if (minute_dif % ssc_day.getFrequency() == 0) {
+						try {
+							Thread.sleep(second_effct);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println("当前时间" + (new Date().toString()));
+						System.out.println("-------重庆时时彩白场定时任务启动--------");
+						String args[] = AwardResult.cqssc_kj_json();
+						ssc_KJ.ssc_kj_LM(args);// 重庆时时彩两面玩法判断
+						ssc_KJ.ssc_kj_DYIQ(args);// 重庆时时彩第一球玩法判断
+						ssc_KJ.ssc_kj_DERQ(args);// 重庆时时彩第二球玩法判断
+						ssc_KJ.ssc_kj_DSANQ(args);// 重庆时时彩第三球玩法判断
+						ssc_KJ.ssc_kj_DSIQ(args);// 重庆时时彩第四球玩法判断
+						ssc_KJ.ssc_kj_DWUQ(args);// 重庆时时彩第五球玩法判断
+
+						// 1.调用获取开奖数据接口，把开奖数据送入 时时彩 开奖表
+						// 2.获取下注单表中获取所有未开的时时彩数据，并分析每条记录的下单json数据
+						// 3.分析中奖金额(调用时时彩的中奖规则),更新该下注单数据的中奖金额字段。
+					}
+				}
+			}
+
+			// }, 1000, ssc.getFrequency() * 1000*60);
+		}, 1000, 1000);
+	}
+
+	public static void startSSC_night() {
+		Timer timer_ssc = new Timer();
+		timer_ssc.scheduleAtFixedRate(new TimerTask() {
+			public void run() {
+				// --取当前最新时间(时、分)--//
+				Calendar c = Calendar.getInstance();
+				int hour = c.get(Calendar.HOUR_OF_DAY);
+				int minute = c.get(Calendar.MINUTE);
+				int second = c.get(Calendar.SECOND);
+				// --取系统设定的时间--//
+				int set_beginHour = Integer.parseInt(ssc_night.getBeginTime()
+						.split(":")[0]);
+				int set_beginMinute = Integer.parseInt(ssc_night.getBeginTime()
+						.split(":")[1]);
+				int set_endHour = Integer.parseInt(ssc_night.getEndTime()
+						.split(":")[0]);
+				int set_endMinute = Integer.parseInt(ssc_night.getEndTime()
+						.split(":")[1]);
+				/* 判断当前时间是否有效 */
+				if (!(hour > set_endHour && hour < set_beginHour) // 重庆时时彩夜场特殊处理，取反操作。
+						|| (hour == set_beginHour && minute >= set_beginMinute)
+						|| (hour == set_endHour && minute <= set_endMinute)) {
+					int minute_dif = (hour * 3600 + minute * 60 + second)
+							- (set_beginHour * 3600 + set_beginMinute * 60); // 分钟差
+					if (minute_dif % ssc_night.getFrequency() == 0) {
+						try {
+							Thread.sleep(second_effct);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println("当前时间" + (new Date().toString()));
+						System.out.println("-------重庆时时彩夜场定时任务启动--------");
+						String args[] = AwardResult.cqssc_kj_json();
+						ssc_KJ.ssc_kj_LM(args);// 重庆时时彩两面玩法判断
+						ssc_KJ.ssc_kj_DYIQ(args);// 重庆时时彩第一球玩法判断
+						ssc_KJ.ssc_kj_DERQ(args);// 重庆时时彩第二球玩法判断
+						ssc_KJ.ssc_kj_DSANQ(args);// 重庆时时彩第三球玩法判断
+						ssc_KJ.ssc_kj_DSIQ(args);// 重庆时时彩第四球玩法判断
+						ssc_KJ.ssc_kj_DWUQ(args);// 重庆时时彩第五球玩法判断
+						// 1.调用获取开奖数据接口，把开奖数据送入 时时彩 开奖表
+						// 2.获取下注单表中获取所有未开的时时彩数据，并分析每条记录的下单json数据
+						// 3.分析中奖金额(调用时时彩的中奖规则),更新该下注单数据的中奖金额字段。
+					}
+				}
+			}
+
+			// }, 1000, ssc.getFrequency() * 1000*60);
+		}, 1000, 1000);
+	}
+
 	public static void main(String[] args) {
 		startJSKS();
 		startPCDD();
