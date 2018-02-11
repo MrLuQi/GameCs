@@ -286,6 +286,5 @@ public class timerTask {
 		startBJSC();
 		startSSC_day();
 		startSSC_night();
-
 	}
 }

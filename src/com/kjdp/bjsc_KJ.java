@@ -54,7 +54,7 @@ public class bjsc_KJ {
 		 if(zjje > 10000){
 			 pst.setString(4, "1");
 			 }else{
-				 pst.setString(2, "0");
+				 pst.setString(4, "0");
 			 }
 		 pst.setInt(5, rsQT.getInt("oid"));
 		 pst.executeUpdate();

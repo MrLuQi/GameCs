@@ -285,7 +285,7 @@ public static void ssc_kj_DWUQ(String[] args){
 	ResultSet rsQT=st.executeQuery(sqlQT);
 	while(rsQT.next()){
 	//Orders orders=new Orders();
-	if(rsQT.getString("orderType").equals("sscFIVS")){
+	if(rsQT.getString("orderType").equals("sscFIVE")){
 		
 	int zjje=(int)Test_SSC.SSC_DWUQ_cal(rsQT.getString("orderStatus"), nums);
 	String sqlJG="update orders set status=?,hitflag=? ,hitamount=?,bigflag=? where oid=?";
