@@ -48,9 +48,9 @@ public class ssc_KJ {
 		 }
 		 pst.setInt(3, zjje);
 		 if(zjje > 10000){
-			 pst.setString(2, "1");
+			 pst.setString(4, "1");
 			 }else{
-				 pst.setString(2, "0");
+				 pst.setString(4, "0");
 			 }
 		 pst.setInt(5, rsQT.getInt("oid"));
 		 pst.executeUpdate();
@@ -97,7 +97,7 @@ public static void ssc_kj_DYIQ(String[] args){
 		 pst.setString(2, "0");
 	 }
 	 pst.setInt(3, zjje);
-	 if(zjje > 0){
+	 if(zjje > 10000){
 		 pst.setString(4, "1");
 		 }else{
 			 pst.setString(4, "0");
