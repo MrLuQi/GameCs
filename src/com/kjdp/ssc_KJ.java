@@ -54,6 +54,7 @@ public class ssc_KJ {
 			 }
 		 pst.setInt(5, rsQT.getInt("oid"));
 		 pst.executeUpdate();
+		 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 		}
 		}
 	    } catch (SQLException e) {
@@ -104,6 +105,7 @@ public static void ssc_kj_DYIQ(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {
@@ -154,6 +156,7 @@ public static void ssc_kj_DERQ(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {
@@ -204,6 +207,7 @@ public static void ssc_kj_DSANQ(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {
@@ -254,6 +258,7 @@ public static void ssc_kj_DSIQ(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {
@@ -304,6 +309,7 @@ public static void ssc_kj_DWUQ(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {

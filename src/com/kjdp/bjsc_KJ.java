@@ -58,6 +58,7 @@ public class bjsc_KJ {
 			 }
 		 pst.setInt(5, rsQT.getInt("oid"));
 		 pst.executeUpdate();
+		 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 		}
 		}
 	    } catch (SQLException e) {
@@ -113,6 +114,7 @@ public static void bjsc_kj_GY(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {
@@ -124,7 +126,7 @@ public static void bjsc_kj_GY(String[] args){
     	}
 }
 /**
- * 北京赛车中冠亚组合玩法开奖结果
+ * 北京赛车中单号玩法开奖结果
  */
 public static void bjsc_kj_DH(String[] args){
 	int nums[]=new int[10];
@@ -168,6 +170,7 @@ public static void bjsc_kj_DH(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {

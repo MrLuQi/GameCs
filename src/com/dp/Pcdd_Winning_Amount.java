@@ -3,7 +3,10 @@ package com.dp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
 import net.sf.json.JSONObject;
+
+import com.kjdp.UpdateCommon;
 import com.kjdp.Util_PCDD;
 import com.pojo.Orders;
 import com.util.JdbcUtils;
@@ -55,6 +58,7 @@ public  class Pcdd_Winning_Amount {
                preparedStatement.setInt(4, pcdd_pcdd_cal);
                preparedStatement.setInt(5, resultSet.getInt("oid"));
                preparedStatement.executeUpdate();
+               UpdateCommon.updateMoney(pcdd_pcdd_cal,resultSet.getInt("mid"));
 	            }
 	         
 	          

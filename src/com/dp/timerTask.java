@@ -286,5 +286,6 @@ public class timerTask {
 		startBJSC();
 		startSSC_day();
 		startSSC_night();
+		System.out.println("hello begin");
 	}
 }

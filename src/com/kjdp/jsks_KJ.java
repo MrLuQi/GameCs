@@ -49,6 +49,7 @@ public static void jsks_kj_LM(String[] args){
 		 }
 	 pst.setInt(5, rsQT.getInt("oid"));
 	 pst.executeUpdate();
+	 UpdateCommon.updateMoney(zjje,rsQT.getInt("mid"));
 	}
 	}
     } catch (SQLException e) {
